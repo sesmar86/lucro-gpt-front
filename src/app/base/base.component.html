@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="layout">
+    <div class="header">
+      <div class="logo-header">
+        <img src="assets/icons/icon_header_lucro.png" alt="" />
+      </div>
+
+      <div class="icon-bars-content">
+        <button class="button-toggle-sidebar" (click)="toggleSidebar()">
+          <img src="assets/icons/bars_icon.png" alt="" />
+        </button>
+      </div>
+    </div>
+    <div class="content">
+      <div (mouseenter)="toggleSidebarOff()" (mouseleave)="toggleSidebarOpen()" [ngClass]="collapsed ?  'collapse' : ''" class="left-panel">
+        <button class="button-panel-option">
+          <img src="assets/icons/add_icon.png" alt="" />
+          <span *ngIf="!collapsed">Nueva Conversación</span>
+        </button>
+        <ul class="menu">
+
+        </ul>
+        <div class="panel-footer">
+          <button class="button-panel-option">
+            <img src="assets/icons/delete_icon.png" alt="" />
+            <span *ngIf="!collapsed">Borrar conversaciones</span>
+          </button>
+          <button class="button-panel-option">
+            <img src="assets/icons/icon_help.png" alt="" />
+            <span *ngIf="!collapsed">Ayuda</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="main">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

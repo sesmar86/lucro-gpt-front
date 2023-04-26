@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="form">
+    <div class="img-logo">
+      <img src="assets/icons/lucro-icon 1.png" alt="" />
+    </div>
+
+    <div *ngIf="messageList.length === 0">
+      <div class="alert-help">
+        <div class="alert-info message">
+          <div class="img-con">
+            <img src="assets/icons/message_icon.png" alt="" />
+          </div>
+          <div class="text">
+            <span>Ingresa el mensaje que desees e inicia la conversación</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert-help">
+        <div class="alert-info alert">
+          <div class="img-con">
+            <img src="assets/icons/warning_icon.png" alt="" />
+          </div>
+          <div class="text">
+            <span>Ingresa el mensaje que desees e inicia la conversación</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-message"  *ngIf="messageList.length >= 1">
+      <div *ngFor="let message of messageList">
+        <div class="message-username" *ngIf="message.user === 'Username'">
+          <div class="icon-user">
+            <img src="assets/icons/icon_user.png" alt="">
+          </div>
+          <p>{{ message.message }}</p>
+        </div>
+      </div>
+    </div>
+    <form [formGroup]="formSearch" (ngSubmit)="sendForm(formSearch)">
+      <div class="search">
+        <input
+          formControlName="inputSearch"
+          type="text"
+          class="input-search"
+          placeholder="¿Qué es la órbita terrestre?"
+        />
+        <button type="submit" id="icon">
+          <img class="search-icon" src="assets/icons/icon_send.png" alt="" />
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
