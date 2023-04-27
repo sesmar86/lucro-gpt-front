@@ -8,6 +8,6 @@ import { BaseRoutingModule } from "./base-routing.module";
   imports: [
     CommonModule,
     BaseRoutingModule
-  ]
+  ],
 })
 export class BaseModule { }

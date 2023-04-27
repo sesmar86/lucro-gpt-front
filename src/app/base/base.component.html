@@ -12,13 +12,21 @@
       </div>
     </div>
     <div class="content">
-      <div (mouseenter)="toggleSidebarOff()" (mouseleave)="toggleSidebarOpen()" [ngClass]="collapsed ?  'collapse' : ''" class="left-panel">
-        <button class="button-panel-option">
+      <div
+        (mouseenter)="toggleSidebarOff()"
+        (mouseleave)="toggleSidebarOpen()"
+        [ngClass]="collapsed ? 'collapse' : ''"
+        class="left-panel"
+      >
+        <button class="button-panel-option" >
           <img src="assets/icons/add_icon.png" alt="" />
           <span *ngIf="!collapsed">Nueva Conversación</span>
         </button>
         <ul class="menu">
-
+          <li *ngFor="let item of messageHistory | async">
+            <img src="assets/icons/message.svg" alt="" />
+            <span *ngIf="!collapsed"> {{ item.message | slice : 0 : 22 }}...</span>
+          </li>
         </ul>
         <div class="panel-footer">
           <button class="button-panel-option">

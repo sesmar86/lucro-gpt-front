@@ -1,15 +1,49 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-body{
-    background-color: #F5F5F5;
-    font-family: 'Roboto', sans-serif;
-    // &::-webkit-scrollbar {
-    //     width: 7px;
-    // }
-    
-    // &::-webkit-scrollbar-thumb {
-    //     background-color: rgba(0, 0, 0, 0.2);
-    //     border-radius: 5px;
-    // }
-    overflow: hidden;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+body {
+  background-color: #F3F4F7;
+  font-family: "Roboto", sans-serif;
+  overflow: hidden;
 }
 
+.spinner {
+  margin-top: 27px;
+  margin-left: 10px;
+  > div {
+    width: 18px;
+    height: 18px;
+    background-color: #048941;
+    border-radius: 100%;
+    display: inline-block;
+    animation: sk-bouncedelay 1.2s infinite ease-in-out both;
+  }
+  .bounce1 {
+    animation-delay: -0.32s;
+  }
+  .bounce2 {
+    animation-delay: -0.16s;
+  }
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+  }
+
+  40% {
+    transform: scale(1);
+  }
+}
+
+@keyframes sk-bouncedelay {
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+  }
+
+  40% {
+    transform: scale(1);
+  }
+}
