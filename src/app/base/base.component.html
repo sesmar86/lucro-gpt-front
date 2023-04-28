@@ -18,18 +18,20 @@
         [ngClass]="collapsed ? 'collapse' : ''"
         class="left-panel"
       >
-        <button class="button-panel-option" >
+        <button class="button-panel-option" (click)="newMessage()">
           <img src="assets/icons/add_icon.png" alt="" />
           <span *ngIf="!collapsed">Nueva Conversación</span>
         </button>
         <ul class="menu">
-          <li *ngFor="let item of messageHistory | async">
+          <li *ngFor="let item of messageHistory">
+           <div>
             <img src="assets/icons/message.svg" alt="" />
-            <span *ngIf="!collapsed"> {{ item.message | slice : 0 : 22 }}...</span>
+            <span *ngIf="!collapsed"> {{ item?.message | slice : 0 : 22 }}...</span>
+           </div>
           </li>
         </ul>
         <div class="panel-footer">
-          <button class="button-panel-option">
+          <button class="button-panel-option" (click)="clearMessageList()">
             <img src="assets/icons/delete_icon.png" alt="" />
             <span *ngIf="!collapsed">Borrar conversaciones</span>
           </button>

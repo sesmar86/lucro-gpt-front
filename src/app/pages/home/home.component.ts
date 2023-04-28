@@ -14,15 +14,20 @@ export class HomeComponent implements OnInit {
   public messageResponseRobot: any[] = []
   constructor(
     private formBuilder: FormBuilder,
-    private messageService:MessageHistoryService,
-    private gptService:GptServiceService
+    private messageService: MessageHistoryService,
+    private gptService: GptServiceService
   ) {
     this.formSearch = this.formBuilder.group({
       inputSearch: ['']
     })
   }
   ngOnInit(): void {
-
+    this.messageService.messageC$.subscribe(item => {
+      if (!item) {
+        this.messageList = []
+        this.messageResponseRobot = []
+      }
+    })
   }
 
   sendForm(form: FormGroup) {
@@ -31,14 +36,15 @@ export class HomeComponent implements OnInit {
     })
     this.messageService.setMessage(this.messageList)
     this.sendChat(form.value.inputSearch)
+    this.formSearch.reset()
   }
-  sendChat(message:string) {
+  sendChat(message: string) {
     const send = {
       message: message
     }
-  //  this.gptService.postMessage(send).subscribe(_resp => {
-  //   console.log(_resp)
-  //  })
+    //  this.gptService.postMessage(send).subscribe(_resp => {
+    //   console.log(_resp)
+    //  })
     this.messageResponseRobot.push({
       message: message
     })
