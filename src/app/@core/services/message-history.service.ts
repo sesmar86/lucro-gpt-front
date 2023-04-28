@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs'
+import { BehaviorSubject,Subject } from 'rxjs'
 @Injectable({
   providedIn: 'root'
 })
 export class MessageHistoryService {
   public message!: any[]
   public messageClear!: any[]
-  public message$ = new BehaviorSubject<any[]>(this.message)
-  public messageC$ = new BehaviorSubject<any[]>(this.messageClear)
+  public message$ = new Subject<any[]>()
+  public messageC$ = new Subject<any[]>()
   constructor() { }
 
   get messageGet() {
@@ -20,6 +20,8 @@ export class MessageHistoryService {
 
   newMessage() {
     this.messageC$.next(this.messageClear)
-
+  }
+  setViewMessage(data:any) {
+    this.messageC$.next(data)
   }
 }

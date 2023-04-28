@@ -11,7 +11,8 @@ export class HomeComponent implements OnInit {
 
   public formSearch!: FormGroup
   public messageList: any[] = []
-  public messageResponseRobot: any[] = []
+  public loading: boolean = true
+  public modal: boolean = false
   constructor(
     private formBuilder: FormBuilder,
     private messageService: MessageHistoryService,
@@ -25,29 +26,42 @@ export class HomeComponent implements OnInit {
     this.messageService.messageC$.subscribe(item => {
       if (!item) {
         this.messageList = []
-        this.messageResponseRobot = []
+        this.loading = true
+      }else{
+        this.messageList = []
+        this.messageList.push(item)
+        this.loading = false
       }
+   
     })
   }
 
   sendForm(form: FormGroup) {
     this.messageList.push({
+      user: true,
+      robot:false,
+      response:'',
       message: form.value.inputSearch
     })
-    this.messageService.setMessage(this.messageList)
-    this.sendChat(form.value.inputSearch)
-    this.formSearch.reset()
-  }
-  sendChat(message: string) {
+
     const send = {
-      message: message
+      message: form.value.inputSearch
     }
-    //  this.gptService.postMessage(send).subscribe(_resp => {
-    //   console.log(_resp)
-    //  })
-    this.messageResponseRobot.push({
-      message: message
+
+    this.gptService.postMessage(send).subscribe(_resp => {
+      this.loading = false
+      this.messageList[0].robot = true
+      this.messageList[0].response = _resp.answer
+      this.messageService.setMessage(this.messageList)
     })
 
+    this.formSearch.reset()
+  }
+
+  open(){
+    this.modal = true
+  }
+  close(){
+    this.modal = false
   }
 }

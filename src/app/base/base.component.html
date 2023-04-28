@@ -23,11 +23,13 @@
           <span *ngIf="!collapsed">Nueva Conversación</span>
         </button>
         <ul class="menu">
-          <li *ngFor="let item of messageHistory">
-           <div>
-            <img src="assets/icons/message.svg" alt="" />
-            <span *ngIf="!collapsed"> {{ item?.message | slice : 0 : 22 }}...</span>
-           </div>
+          <li *ngFor="let item of messageHistory" (click)="viewMessage(item)">
+            <div>
+              <img src="assets/icons/message.svg" alt="" />
+              <span *ngIf="!collapsed">
+                {{ item?.message | slice : 0 : 22 }}...</span
+              >
+            </div>
           </li>
         </ul>
         <div class="panel-footer">

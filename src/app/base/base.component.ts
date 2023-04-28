@@ -34,4 +34,7 @@ export class BaseComponent implements OnInit {
   newMessage() {
     this.messageService.newMessage();
   }
+  viewMessage(data:any){
+    this.messageService.setViewMessage(data);
+  }
 }
