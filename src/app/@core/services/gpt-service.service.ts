@@ -11,6 +11,6 @@ export class GptServiceService {
   ) { }
 
   postMessage(data:any){
-    return this.http.post<any>('https://gpt.lucro-app.com', data)
+    return this.http.post<any>('https://api-gpt.lucro-app.com', data)
   }
 }

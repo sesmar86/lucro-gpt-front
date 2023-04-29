@@ -73,6 +73,13 @@
           &:hover {
             background: #d1d5db;
           }
+
+
+        }
+        @media (max-width: 700px){
+          .button-panel-option {
+            font-size: 12px
+          }
         }
         .menu {
           height: 68.5vh;
@@ -105,6 +112,14 @@
             }
           }
         }
+
+        @media (max-width: 700px){
+          .menu {
+            li {
+              font-size: 15px
+            }
+          }
+        }
       }
 
       .main {
@@ -115,7 +130,7 @@
       }
       @media (max-width: 700px) {
         .main{
-          width: 100%;
+        width: calc(100% - 200px);
         }
       }
     }
